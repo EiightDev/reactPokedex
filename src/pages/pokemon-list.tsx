@@ -1,9 +1,10 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import Pokemon from '../models/pokemon';
 import PokemonCard from '../components/pokemon-card';
 import PokemonService from '../services/pokemon-service'
-import { Link } from 'react-router-dom';
+import PokemonSearch from '../components/pokemon-search';
 
   
 const PokemonList: FunctionComponent = () => {
@@ -17,7 +18,8 @@ const PokemonList: FunctionComponent = () => {
     <div>
       <h1 className="center">Pokédex</h1>
       <div className="container"> 
-        <div className="row"> 
+        <div className="row">
+        <PokemonSearch />
         {pokemons.map(pokemon => (
           <PokemonCard key={pokemon.id} pokemon={pokemon}/>
         ))}

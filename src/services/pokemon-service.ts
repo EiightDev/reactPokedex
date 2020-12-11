@@ -31,12 +31,17 @@ export default class PokemonService {
   }
 
   static addPokemon(pokemon: Pokemon): Promise<Pokemon> {
-
     return fetch(`http://localhost:3001/pokemons/`, {
       method: "POST",
       body: JSON.stringify(pokemon),
       headers: { "Content-Type": "application/json" },
     })
+      .then((response) => response.json())
+      .catch((error) => this.handleError(error));
+  }
+
+  static searchPokemon(term: string): Promise<Pokemon[]> {
+    return fetch(`http://localhost:3001/pokemons?q=${term}`)
       .then((response) => response.json())
       .catch((error) => this.handleError(error));
   }
